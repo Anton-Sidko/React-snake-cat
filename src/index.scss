@@ -1,0 +1,72 @@
+// Reset
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; //1rem = 10px;
+}
+
+// Fonts
+@font-face {
+  font-family: 'BlackItalic';
+  font-display: swap;
+  src: local('Lato-BlackItalic'),
+    url(./fonts/Lato/Lato-BlackItalic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Bold';
+  font-display: swap;
+  src: local('Lato-Lato-Bold'),
+    url(./fonts/Lato/Lato-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Regular';
+  font-display: swap;
+  src: local('Lato-Regular'),
+    url(./fonts/Lato/Lato-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Light';
+  font-display: swap;
+  src: local('Lato-Light'), url(./fonts/Lato/Lato-Light.ttf) format('truetype');
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// FIXIT
+h1 {
+  font-family: 'BlackItalic', sans-serif;
+  text-align: center;
+  font-size: 60px;
+}
+h2 {
+  font-family: 'Bold', sans-serif;
+  text-align: center;
+  font-size: 40px;
+}
+p {
+  font-family: 'Regular', sans-serif;
+  text-align: center;
+  font-size: 24px;
+  width: 50%;
+}
+span {
+  font-family: 'Light', sans-serif;
+  text-align: center;
+  font-size: 24px;
+  width: 50%;
+}
