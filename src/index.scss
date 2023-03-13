@@ -12,6 +12,12 @@ html {
   font-size: 62.5%; //1rem = 10px;
 }
 
+body {
+  font-family: 'Regular';
+  font-size: 1.6rem;
+  line-height: 1.25;
+}
+
 // Fonts
 @font-face {
   font-family: 'BlackItalic';
@@ -45,28 +51,4 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-// FIXIT
-h1 {
-  font-family: 'BlackItalic', sans-serif;
-  text-align: center;
-  font-size: 60px;
-}
-h2 {
-  font-family: 'Bold', sans-serif;
-  text-align: center;
-  font-size: 40px;
-}
-p {
-  font-family: 'Regular', sans-serif;
-  text-align: center;
-  font-size: 24px;
-  width: 50%;
-}
-span {
-  font-family: 'Light', sans-serif;
-  text-align: center;
-  font-size: 24px;
-  width: 50%;
 }

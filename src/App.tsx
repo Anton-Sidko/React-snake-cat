@@ -1,10 +1,11 @@
-import React from 'react';
+import { FC } from 'react';
 
-function App() {
+import { Header } from './components/header/header.component';
+
+const App: FC = (): JSX.Element => {
   return (
     <div className="App">
-      <h1>Snake cat 🐱</h1>
-      <h2>Test title</h2>
+      <Header />
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
         itaque dolores dicta hic saepe ducimus impedit quas, nobis placeat
@@ -14,7 +15,7 @@ function App() {
       <span>test text</span>
     </div>
   );
-}
+};
 
 export default App;
 
