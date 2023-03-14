@@ -20,6 +20,7 @@ const SettingsBar: FC = (): JSX.Element => {
         <SettingsWrap>
           <Input
             type="number"
+            inputMode="numeric"
             id="game-speed"
             min="1"
             max="10"
@@ -33,7 +34,7 @@ const SettingsBar: FC = (): JSX.Element => {
 
           <Input
             type="checkbox"
-            label="auto"
+            label="Auto"
             id="auto-speed"
             defaultChecked={true}
             inputChangeHandler={() => console.log('auto-speed 🅰')}

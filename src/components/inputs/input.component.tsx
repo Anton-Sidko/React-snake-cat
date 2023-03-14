@@ -17,21 +17,20 @@ const Input: FC<InputProps> = ({
   ...checkboxOptions
 }): JSX.Element => {
   return (
-    <>
+    <InputWrap>
       {label && labelPosition === 'before' ? (
         <label htmlFor={id}>{label}</label>
       ) : null}
-      <InputWrap>
-        <input
-          id={id}
-          onChange={inputChangeHandler}
-          {...checkboxOptions}
-        />
-        {label && labelPosition === 'after' ? (
-          <label htmlFor={id}>{label}</label>
-        ) : null}
-      </InputWrap>
-    </>
+
+      <input
+        id={id}
+        onChange={inputChangeHandler}
+        {...checkboxOptions}
+      />
+      {label && labelPosition === 'after' ? (
+        <label htmlFor={id}>{label}</label>
+      ) : null}
+    </InputWrap>
   );
 };
 
