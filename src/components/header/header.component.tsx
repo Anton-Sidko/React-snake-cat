@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { GameHeader, GameTitle, GameSubTitle } from './header.styles';
 
-export const Header: FC = (): JSX.Element => {
+const Header: FC = (): JSX.Element => {
   return (
     <GameHeader>
       <GameTitle>
@@ -13,3 +13,5 @@ export const Header: FC = (): JSX.Element => {
     </GameHeader>
   );
 };
+
+export default Header;
