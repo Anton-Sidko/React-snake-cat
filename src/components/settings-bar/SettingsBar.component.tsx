@@ -1,10 +1,30 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 
-import { GameSettingsBar, SettingsWrap } from './settings-bar.styles';
+import { GameSettingsBar, SettingsWrap } from './SettingsBar.styles';
 
-import Input from '../inputs/input.component';
+import Input from '../inputs/Input.component';
+import { GameContext } from '../../context/GameContext';
+import { ActionType, GameStatus } from '../../models/types';
 
 const SettingsBar: FC = (): JSX.Element => {
+  const [state, dispatch] = useContext(GameContext);
+
+  const setWall = () => {
+    dispatch({
+      type: ActionType.SET_WALL,
+    });
+  };
+
+  const seAutoSpeed = () => {
+    dispatch({
+      type: ActionType.SET_AUTO_SPEED,
+    });
+  };
+
+  const isPlaying = state.gameStatus === GameStatus.PLAYING;
+
+  console.log(state);
+
   return (
     <GameSettingsBar>
       <h2>Game settings:</h2>
@@ -14,7 +34,8 @@ const SettingsBar: FC = (): JSX.Element => {
           type="checkbox"
           label="Wall"
           id="switch-wall"
-          inputChangeHandler={() => console.log('checkbox wall 🧱')}
+          inputChangeHandler={setWall}
+          disabled={isPlaying ? true : undefined}
         />
 
         <SettingsWrap>
@@ -30,6 +51,7 @@ const SettingsBar: FC = (): JSX.Element => {
             inputChangeHandler={e =>
               console.log(`${e.target.value} speed now 🔢`)
             }
+            disabled={isPlaying ? true : undefined}
           />
 
           <Input
@@ -37,7 +59,8 @@ const SettingsBar: FC = (): JSX.Element => {
             label="Auto"
             id="auto-speed"
             defaultChecked={true}
-            inputChangeHandler={() => console.log('auto-speed 🅰')}
+            inputChangeHandler={seAutoSpeed}
+            disabled={isPlaying ? true : undefined}
           />
         </SettingsWrap>
 
@@ -52,6 +75,7 @@ const SettingsBar: FC = (): JSX.Element => {
           inputChangeHandler={e =>
             console.log(`${e.target.value} field size now ❎`)
           }
+          disabled={isPlaying ? true : undefined}
         />
       </SettingsWrap>
     </GameSettingsBar>

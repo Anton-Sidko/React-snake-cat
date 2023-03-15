@@ -1,6 +1,6 @@
 import { FC, InputHTMLAttributes } from 'react';
 
-import { InputWrap } from './inputs.styles';
+import { InputWrap } from './Inputs.styles';
 
 type InputProps = {
   label?: string;
