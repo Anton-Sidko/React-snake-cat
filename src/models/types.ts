@@ -22,6 +22,7 @@ export enum ActionType {
   PAUSE = 'pause',
   FINISH = 'finish',
   PLAY_AGAIN = 'play_again',
+  RESTART = 'restart',
   MOVE = 'move',
   SPAWN_FOOD = 'spawn_FOOD',
   SET_DIRECTION = 'set_direction',

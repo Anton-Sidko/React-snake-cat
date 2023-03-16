@@ -1,29 +1,22 @@
-import { FC, useContext } from 'react';
+import React, { FC, useContext } from 'react';
 
 import { GameSettingsBar, SettingsWrap } from './SettingsBar.styles';
 
 import Input from '../inputs/Input.component';
 import { GameContext } from '../../context/GameContext';
-import { ActionType, GameStatus } from '../../models/types';
+import { GameStatus } from '../../models/types';
+import {
+  setAutoSpeed,
+  setFieldSize,
+  setSpeed,
+  setWall,
+} from '../../context/reducer/actions';
 
 const SettingsBar: FC = (): JSX.Element => {
   const [state, dispatch] = useContext(GameContext);
-
-  const setWall = () => {
-    dispatch({
-      type: ActionType.SET_WALL,
-    });
-  };
-
-  const seAutoSpeed = () => {
-    dispatch({
-      type: ActionType.SET_AUTO_SPEED,
-    });
-  };
-
-  const isPlaying = state.gameStatus === GameStatus.PLAYING;
-
-  console.log(state);
+  const { gameStatus, gameSpeed, fieldSize, isAutoSpeed, isWall } = state;
+  const isPlaying =
+    gameStatus === GameStatus.PLAYING || gameStatus === GameStatus.PAUSED;
 
   return (
     <GameSettingsBar>
@@ -34,8 +27,9 @@ const SettingsBar: FC = (): JSX.Element => {
           type="checkbox"
           label="Wall"
           id="switch-wall"
-          inputChangeHandler={setWall}
+          inputChangeHandler={() => setWall(dispatch)}
           disabled={isPlaying ? true : undefined}
+          checked={isWall ? true : false}
         />
 
         <SettingsWrap>
@@ -45,21 +39,19 @@ const SettingsBar: FC = (): JSX.Element => {
             id="game-speed"
             min="1"
             max="10"
-            defaultValue={1}
+            value={gameSpeed}
             label="Speed"
             labelPosition="before"
-            inputChangeHandler={e =>
-              console.log(`${e.target.value} speed now 🔢`)
-            }
-            disabled={isPlaying ? true : undefined}
+            inputChangeHandler={e => setSpeed(e, dispatch)}
+            disabled={isPlaying || isAutoSpeed ? true : undefined}
           />
 
           <Input
             type="checkbox"
             label="Auto"
             id="auto-speed"
-            defaultChecked={true}
-            inputChangeHandler={seAutoSpeed}
+            checked={isAutoSpeed ? true : false}
+            inputChangeHandler={() => setAutoSpeed(dispatch)}
             disabled={isPlaying ? true : undefined}
           />
         </SettingsWrap>
@@ -69,12 +61,10 @@ const SettingsBar: FC = (): JSX.Element => {
           id="field-size"
           min="5"
           max="15"
-          defaultValue={10}
+          value={fieldSize}
           label="Field size"
           labelPosition="before"
-          inputChangeHandler={e =>
-            console.log(`${e.target.value} field size now ❎`)
-          }
+          inputChangeHandler={e => setFieldSize(e, dispatch)}
           disabled={isPlaying ? true : undefined}
         />
       </SettingsWrap>
