@@ -11,6 +11,9 @@ export const reducer = function (state: GameState, action: Action): GameState {
   switch (action.type) {
     case ActionType.SET_AUTO_SPEED:
       const isAutoSpeed = !state.isAutoSpeed;
+      if (isAutoSpeed) {
+        return { ...state, gameSpeed: 1, isAutoSpeed: isAutoSpeed };
+      }
       return { ...state, isAutoSpeed: isAutoSpeed };
 
     case ActionType.SET_WALL:

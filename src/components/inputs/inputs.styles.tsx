@@ -19,7 +19,7 @@ export const InputWrap = styled.div`
     &[type='checkbox'] {
       width: 1.6rem;
       height: 1.6rem;
-      accent-color: #205e61;
+      accent-color: var(--main-color);
     }
 
     &[type='number'] {
@@ -35,8 +35,8 @@ export const InputWrap = styled.div`
 
     &[type='range'] {
       width: 15rem;
-      background-color: #f7ecde;
-      accent-color: #205e61;
+      background-color: var(--bgc);
+      accent-color: var(--main-color);
     }
   }
 `;
