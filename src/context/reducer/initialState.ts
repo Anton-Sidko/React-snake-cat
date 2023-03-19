@@ -19,6 +19,8 @@ export const INITIAL_STATE: GameState = {
   isAutoSpeed: true,
   gameSpeed: 1,
   fieldSize: INITIAL_FIELD_SIZE,
+  rows: INITIAL_FIELD_SIZE,
+  cols: INITIAL_FIELD_SIZE,
   gamePoints: 0,
   grid: buildGrid(
     INITIAL_FIELD_SIZE,

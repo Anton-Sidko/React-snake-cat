@@ -5,6 +5,7 @@ import {
   GameState,
   GameStatus,
 } from '../../models/types';
+import { buildGrid } from '../../utils/gridUtils';
 import { INITIAL_STATE } from './initialState';
 
 export const reducer = function (state: GameState, action: Action): GameState {
@@ -24,7 +25,16 @@ export const reducer = function (state: GameState, action: Action): GameState {
       return { ...state, gameSpeed: action.payload };
 
     case ActionType.SET_FIELD_SIZE:
-      return { ...state, fieldSize: action.payload };
+      const newFieldSize = action.payload;
+      const newSnakeHead = {
+        row: Math.floor(newFieldSize / 2),
+        col: Math.floor(newFieldSize / 2),
+      };
+      return {
+        ...state,
+        fieldSize: newFieldSize,
+        grid: buildGrid(newFieldSize, newFieldSize, newSnakeHead, []),
+      };
 
     case ActionType.PLAY:
       return { ...state, gameStatus: GameStatus.PLAYING };

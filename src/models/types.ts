@@ -44,6 +44,8 @@ export interface GameState {
   isAutoSpeed: boolean;
   gameSpeed: number;
   fieldSize: number;
+  rows: number;
+  cols: number;
   gamePoints: number;
   grid: string[][];
 }

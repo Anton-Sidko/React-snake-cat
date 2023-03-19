@@ -4,12 +4,12 @@ import { CellItem } from './Cell.styles';
 
 // FIXIT
 type CellProps = {
-  row: number;
-  col: number;
+  // row: number;
+  // col: number;
   content: string;
 };
 
-const Cell: FC<CellProps> = memo(({ row, col, content }): JSX.Element => {
+const Cell: FC<CellProps> = memo(({ content }): JSX.Element => {
   const isSnake = content !== CellType.EMPTY;
 
   return (
