@@ -45,4 +45,23 @@ export interface GameState {
   gameSpeed: number;
   fieldSize: number;
   gamePoints: number;
+  grid: string[][];
+}
+
+export enum CellType {
+  EMPTY = '',
+  SNAKE_BODY = 's',
+  SNAKE_HEAD = '😺',
+}
+
+export interface SnakeSegment {
+  row: number;
+  col: number;
+  next?: SnakeSegment;
+}
+
+export interface Food {
+  row: number;
+  col: number;
+  character: string;
 }
