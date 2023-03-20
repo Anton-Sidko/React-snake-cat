@@ -44,10 +44,10 @@ export interface GameState {
   isAutoSpeed: boolean;
   gameSpeed: number;
   fieldSize: number;
-  rows: number;
-  cols: number;
   gamePoints: number;
+  snakeHead: SnakeSegment;
   grid: string[][];
+  food: Food[];
 }
 
 export enum CellType {
@@ -55,6 +55,8 @@ export enum CellType {
   SNAKE_BODY = 's',
   SNAKE_HEAD = '😺',
 }
+
+export type CellIndex = [number | null, number | null];
 
 export interface SnakeSegment {
   row: number;

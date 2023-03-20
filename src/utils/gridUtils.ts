@@ -1,11 +1,18 @@
-import { CellType, Food, SnakeSegment } from '../models/types';
+import {
+  CellIndex,
+  CellType,
+  Direction,
+  Food,
+  SnakeSegment,
+} from '../models/types';
 
 export const buildGrid = function (
-  rows: number,
-  cols: number,
+  fieldSize: number,
   snakeHead: SnakeSegment,
   food: Food[]
 ): string[][] {
+  const rows = fieldSize,
+    cols = fieldSize;
   // create 2 dimensional empty grid
   const grid = new Array<string[]>();
 
@@ -31,4 +38,35 @@ export const buildGrid = function (
   }
 
   return grid;
+};
+
+export const getNextCell = function (
+  row: number,
+  col: number,
+  fieldSize: number,
+  direction: Direction,
+  isWall: boolean
+): CellIndex {
+  let newRow: number | null = row;
+  let newCol: number | null = col;
+
+  switch (direction) {
+    case Direction.LEFT:
+      newCol = col > 0 ? col - 1 : isWall ? null : fieldSize - 1;
+      break;
+    case Direction.RIGHT:
+      newCol = col < fieldSize - 1 ? col + 1 : isWall ? null : 0;
+      break;
+    case Direction.DOWN:
+      newRow = row < fieldSize - 1 ? row + 1 : isWall ? null : 0;
+      break;
+    case Direction.UP:
+      newRow = row > 0 ? row - 1 : isWall ? null : fieldSize - 1;
+      break;
+
+    default:
+      break;
+  }
+
+  return [newRow, newCol];
 };

@@ -5,8 +5,8 @@ type CellItemProps = {
 };
 
 const snakeCellStyle = css`
-  background-color: #2b27;
-  border: 1px solid #2b2;
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
 `;
 
 export const CellItem = styled.div<CellItemProps>`
@@ -15,9 +15,9 @@ export const CellItem = styled.div<CellItemProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  font-size: 2.5rem;
+  background-color: var(--bgc-light);
+  border: 1px solid var(--bgc);
 
   ${({ isSnake }) => isSnake && snakeCellStyle}
 `;

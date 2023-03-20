@@ -21,11 +21,14 @@ const mapCells = function (grid: string[][], fieldSize: number): JSX.Element[] {
 };
 
 const Grid: FC = (): JSX.Element => {
-  const [{ fieldSize, grid }] = useContext(GameContext);
+  const [{ fieldSize, grid, isWall }] = useContext(GameContext);
 
   return (
     <GridWrapper>
-      <GridContainer fieldSize={fieldSize}>
+      <GridContainer
+        fieldSize={fieldSize}
+        isWall={isWall}
+      >
         {mapCells(grid, fieldSize)}
       </GridContainer>
     </GridWrapper>

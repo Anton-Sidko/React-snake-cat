@@ -33,7 +33,7 @@ export const reducer = function (state: GameState, action: Action): GameState {
       return {
         ...state,
         fieldSize: newFieldSize,
-        grid: buildGrid(newFieldSize, newFieldSize, newSnakeHead, []),
+        grid: buildGrid(newFieldSize, newSnakeHead, []),
       };
 
     case ActionType.PLAY:

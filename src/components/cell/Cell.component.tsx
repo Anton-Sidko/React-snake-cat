@@ -4,8 +4,6 @@ import { CellItem } from './Cell.styles';
 
 // FIXIT
 type CellProps = {
-  // row: number;
-  // col: number;
   content: string;
 };
 
