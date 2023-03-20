@@ -1,3 +1,4 @@
+import { MAX_SPEED_VALUE } from '../../models/constants';
 import { Action, ActionType } from '../../models/types';
 
 export const setWall = (dispatch: React.Dispatch<Action>) => {
@@ -20,8 +21,8 @@ export const setSpeed = (
 
   if (speedValue < 1) {
     speedValue = 1;
-  } else if (speedValue > 10) {
-    speedValue = 10;
+  } else if (speedValue > MAX_SPEED_VALUE) {
+    speedValue = MAX_SPEED_VALUE;
   }
 
   dispatch({

@@ -24,11 +24,12 @@ export enum ActionType {
   PLAY_AGAIN = 'play_again',
   RESTART = 'restart',
   MOVE = 'move',
-  SPAWN_FOOD = 'spawn_FOOD',
+  SPAWN_FOOD = 'spawn_food',
   SET_DIRECTION = 'set_direction',
   SET_WALL = 'set_wall',
   SET_SPEED = 'set-speed',
   SET_AUTO_SPEED = 'set_auto_speed',
+  AUTO_ADD_SPEED = 'auto_add_speed',
   SET_FIELD_SIZE = 'set_field_size',
 }
 

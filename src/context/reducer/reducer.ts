@@ -1,3 +1,4 @@
+import { MAX_SPEED_VALUE } from '../../models/constants';
 import {
   Action,
   ActionType,
@@ -23,6 +24,14 @@ export const reducer = function (state: GameState, action: Action): GameState {
 
     case ActionType.SET_SPEED:
       return { ...state, gameSpeed: action.payload };
+
+    case ActionType.AUTO_ADD_SPEED:
+      let newSpeedValue = state.gameSpeed + 1;
+
+      if (newSpeedValue > MAX_SPEED_VALUE) {
+        return { ...state };
+      }
+      return { ...state, gameSpeed: newSpeedValue };
 
     case ActionType.SET_FIELD_SIZE:
       const newFieldSize = action.payload;
