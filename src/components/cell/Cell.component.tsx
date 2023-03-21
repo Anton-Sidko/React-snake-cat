@@ -8,7 +8,8 @@ type CellProps = {
 };
 
 const Cell: FC<CellProps> = memo(({ content }): JSX.Element => {
-  const isSnake = content !== CellType.EMPTY;
+  const isSnake =
+    content === CellType.SNAKE_BODY || content === CellType.SNAKE_HEAD;
 
   return (
     <CellItem isSnake={isSnake}>

@@ -7,7 +7,11 @@ const moveSnake = function (state: GameState): SnakeSegment | null {
   const { row, col } = snakeHead;
   const [newRow, newCol] = getNextCell(row, col, fieldSize, direction, isWall);
 
-  if (!newRow || !newCol || grid[newRow][newCol] === CellType.SNAKE_BODY) {
+  if (
+    newRow === null ||
+    newCol === null ||
+    grid[newRow][newCol] === CellType.SNAKE_BODY
+  ) {
     return null;
   }
 
@@ -29,34 +33,75 @@ const moveSnakeSegment = function (
 
 const checkFoodEated = function (
   state: GameState,
+  oldSnakeHead: SnakeSegment,
   snakeHead: SnakeSegment
-): 0 | 1 {
+): number {
   const { food } = state;
   const { row, col } = snakeHead;
   const foodIndex = food.findIndex(f => f.row === row && f.col === col);
+  let foodEated = 0;
+  // let segment: SnakeSegment | undefined = snakeHead;
 
-  if (foodIndex !== -1) {
+  console.log({ foodIndex });
+
+  if (foodIndex > 0) {
+    console.log({ foodIndex });
+    foodEated++;
     food.splice(foodIndex, 1);
-    return 1;
+    console.log('eat');
+    // return 10;
   }
+  // while (segment) {
+  //   const { row, col } = segment;
+  //   const index = food.findIndex(veg => {
+  //     return veg.row === row && veg.col === col;
+  //   });
+  //   if (index !== -1) {
+  //     foodEated++;
+  //     food.splice(index, 1);
+  //   }
+  //   // tail = segment;
+  //   segment = segment.next;
+  // }
 
-  return 0;
+  if (foodEated === 0) {
+    console.log('toys');
+    return 0;
+  }
+  return 1;
 };
 
 export const move = function (state: GameState): GameState {
-  const { fieldSize, gamePoints, food } = state;
+  const { fieldSize, gamePoints, snakeHead, food } = state;
   const newSnakeHead = moveSnake(state);
 
   if (!newSnakeHead) {
     return { ...state, gameStatus: GameStatus.FINISHED };
   }
 
-  const foodEated = checkFoodEated(state, newSnakeHead);
+  const foo0dEated = checkFoodEated(state, snakeHead, newSnakeHead);
+  // console.log({
+  //   // checkFoodEated: checkFoodEated(state, snakeHead, newSnakeHead),
+  //   foo0dEated,
+  // });
+
+  let newGamePoints = 0;
+  if (foo0dEated) {
+    newGamePoints = gamePoints + SCORE_INCREMENT * 1;
+  }
+
+  // console.log({ newGamePoints });
+
+  // console.log(
+  //   { gamePoints: gamePoints + SCORE_INCREMENT * foodEated },
+  //   { gamePoints },
+  //   { newGamePoints }
+  // );
 
   return {
     ...state,
     snakeHead: newSnakeHead,
+    gamePoints: newGamePoints,
     grid: buildGrid(fieldSize, newSnakeHead, food),
-    gamePoints: gamePoints + SCORE_INCREMENT * foodEated,
   };
 };

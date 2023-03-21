@@ -3,6 +3,7 @@ import { GameContext } from '../context/GameContext';
 import {
   AUTO_SPEED_DELAY,
   MAX_SPEED_VALUE,
+  MOVES_PER_SPAWN,
   MOVE_DELAY,
 } from '../models/constants';
 import { ActionType } from '../models/types';
@@ -18,9 +19,11 @@ export const GameController = function (): null {
   const autoSpeedDelay =
     !isAutoSpeed || reachMaxSpeed ? null : AUTO_SPEED_DELAY;
 
-  console.log('render controller 🎮');
+  // console.log('render controller 🎮');
 
+  useIntervalAction(ActionType.MOVE, moveDelay);
   useIntervalAction(ActionType.AUTO_ADD_SPEED, autoSpeedDelay);
+  useIntervalAction(ActionType.SPAWN_FOOD, moveDelay * MOVES_PER_SPAWN);
 
   return null;
 };

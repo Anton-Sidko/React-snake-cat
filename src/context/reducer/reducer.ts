@@ -7,6 +7,8 @@ import {
   GameStatus,
 } from '../../models/types';
 import { buildGrid } from '../../utils/gridUtils';
+import { move } from '../../utils/moveUtils';
+import { spawnNewFood } from '../../utils/spawnNewFood';
 import { INITIAL_STATE } from './initialState';
 
 export const reducer = function (state: GameState, action: Action): GameState {
@@ -64,6 +66,12 @@ export const reducer = function (state: GameState, action: Action): GameState {
 
     case ActionType.FINISH:
       return { ...state, gameStatus: GameStatus.FINISHED };
+
+    case ActionType.MOVE:
+      return move(state);
+
+    case ActionType.SPAWN_FOOD:
+      return spawnNewFood(state);
 
     default:
       throw new Error(`Unknown action type ${action.type}`);
