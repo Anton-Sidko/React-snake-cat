@@ -6,8 +6,10 @@ import {
   GameState,
   GameStatus,
 } from '../../models/types';
+import { getOppositeDirection } from '../../utils/getOppositeDirection';
 import { buildGrid } from '../../utils/gridUtils';
 import { move } from '../../utils/moveUtils';
+import { resetSnakeHead } from '../../utils/resetSnakeHead';
 import { spawnNewFood } from '../../utils/spawnNewFood';
 import { INITIAL_STATE } from './initialState';
 
@@ -37,13 +39,11 @@ export const reducer = function (state: GameState, action: Action): GameState {
 
     case ActionType.SET_FIELD_SIZE:
       const newFieldSize = action.payload;
-      const newSnakeHead = {
-        row: Math.floor(newFieldSize / 2),
-        col: Math.floor(newFieldSize / 2),
-      };
+      const newSnakeHead = resetSnakeHead(newFieldSize);
       return {
         ...state,
         fieldSize: newFieldSize,
+        snakeHead: newSnakeHead,
         grid: buildGrid(newFieldSize, newSnakeHead, []),
       };
 
@@ -54,15 +54,19 @@ export const reducer = function (state: GameState, action: Action): GameState {
       return { ...state, gameStatus: GameStatus.PAUSED };
 
     case ActionType.PLAY_AGAIN:
+      const curFieldSize = state.fieldSize;
+      const curSnakeHead = resetSnakeHead(curFieldSize);
       return {
         ...state,
-        gamePoints: 0,
         direction: Direction.UP,
-        gameStatus: GameStatus.PLAYING,
+        gameStatus: GameStatus.IDLE,
+        gamePoints: 0,
+        snakeHead: curSnakeHead,
+        grid: buildGrid(curFieldSize, curSnakeHead, []),
       };
 
     case ActionType.RESTART:
-      return { ...INITIAL_STATE, gameStatus: GameStatus.IDLE };
+      return { ...INITIAL_STATE };
 
     case ActionType.FINISH:
       return { ...state, gameStatus: GameStatus.FINISHED };
@@ -72,6 +76,13 @@ export const reducer = function (state: GameState, action: Action): GameState {
 
     case ActionType.SPAWN_FOOD:
       return spawnNewFood(state);
+
+    case ActionType.SET_DIRECTION:
+      const newDirection = action.payload;
+      if (state.direction === getOppositeDirection(newDirection)) {
+        return { ...state };
+      }
+      return { ...state, direction: newDirection };
 
     default:
       throw new Error(`Unknown action type ${action.type}`);

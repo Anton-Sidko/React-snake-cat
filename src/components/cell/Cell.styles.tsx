@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
+import { GameStatus } from '../../models/types';
 
 type CellItemProps = {
   isSnake?: boolean;
+  gameStatus: GameStatus;
 };
 
 const snakeCellStyle = css`
@@ -20,4 +22,11 @@ export const CellItem = styled.div<CellItemProps>`
   border: 1px solid var(--bgc);
 
   ${({ isSnake }) => isSnake && snakeCellStyle}
+
+  ${({ isSnake, gameStatus }) =>
+    gameStatus === GameStatus.FINISHED &&
+    !isSnake &&
+    `
+      background-color: var(--bgc-game-over);
+    `}
 `;

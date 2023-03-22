@@ -14,7 +14,7 @@ import { StatusWrap } from './StatusBar.styles';
 
 const StatusBar: FC = (): JSX.Element => {
   const [state, dispatch] = useContext(GameContext);
-  const { gamePoints, gameSpeed, gameStatus, isWall } = state;
+  const { gamePoints, gameSpeed, gameStatus } = state;
   let gameAction: string,
     gameActionHandler: (dispatch: React.Dispatch<Action>) => void =
       function () {};
@@ -45,7 +45,6 @@ const StatusBar: FC = (): JSX.Element => {
       <h3>Current point: {gamePoints}</h3>
       <h3>Current speed: {gameSpeed}</h3>
       <h3>Current speed: {gameStatus}</h3>
-      <h3>isWall: {isWall ? 'true' : 'false'}</h3>
       <Button
         buttonText={gameAction}
         buttonHandler={() => gameActionHandler(dispatch)}

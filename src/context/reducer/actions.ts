@@ -1,5 +1,5 @@
 import { MAX_SPEED_VALUE } from '../../models/constants';
-import { Action, ActionType } from '../../models/types';
+import { Action, ActionType, Direction } from '../../models/types';
 
 export const setWall = (dispatch: React.Dispatch<Action>) => {
   dispatch({
@@ -76,5 +76,15 @@ export const stopGame = (dispatch: React.Dispatch<Action>) => {
 export const restartGame = (dispatch: React.Dispatch<Action>) => {
   dispatch({
     type: ActionType.RESTART,
+  });
+};
+
+export const setDirection = (
+  dispatch: React.Dispatch<Action>,
+  direction: Direction
+) => {
+  dispatch({
+    type: ActionType.SET_DIRECTION,
+    payload: direction,
   });
 };

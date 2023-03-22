@@ -71,6 +71,14 @@ export const move = function (state: GameState): GameState {
 
   const [scoreInc, newFood] = checkFoodEated(state, snakeHead, newSnakeHead);
 
+  if (!scoreInc) {
+    return {
+      ...state,
+      snakeHead: newSnakeHead,
+      grid: buildGrid(fieldSize, newSnakeHead, food),
+    };
+  }
+
   return {
     ...state,
     snakeHead: newSnakeHead,

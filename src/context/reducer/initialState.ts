@@ -1,16 +1,9 @@
-import {
-  GameState,
-  Direction,
-  GameStatus,
-  SnakeSegment,
-} from '../../models/types';
+import { GameState, Direction, GameStatus } from '../../models/types';
 import { buildGrid } from '../../utils/gridUtils';
+import { resetSnakeHead } from '../../utils/resetSnakeHead';
 
 const INITIAL_FIELD_SIZE = 10;
-const INITIAL_SNAKE_HEAD: SnakeSegment = {
-  row: Math.floor(INITIAL_FIELD_SIZE / 2),
-  col: Math.floor(INITIAL_FIELD_SIZE / 2),
-};
+const INITIAL_SNAKE_HEAD = resetSnakeHead(INITIAL_FIELD_SIZE);
 
 export const INITIAL_STATE: GameState = {
   direction: Direction.UP,

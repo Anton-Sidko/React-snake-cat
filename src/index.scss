@@ -22,6 +22,7 @@ body {
   --main-color: #1a535d;
   --accent-color: #f7b267;
   --border-color: #7b2d26;
+  --bgc-game-over: color-mix(in srgb, var(--border-color) 50%, white);
   --bgc: #ddd;
   --bgc-light: #fff;
 }

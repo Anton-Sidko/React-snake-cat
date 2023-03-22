@@ -1,9 +1,14 @@
 import { FC, useContext } from 'react';
 import { GameContext } from '../../context/GameContext';
+import { GameStatus } from '../../models/types';
 import Cell from '../cell/Cell.component';
 import { GridContainer, GridWrapper } from './Grid.styles';
 
-const mapCells = function (grid: string[][], fieldSize: number): JSX.Element[] {
+const mapCells = function (
+  grid: string[][],
+  fieldSize: number,
+  gameStatus: GameStatus
+): JSX.Element[] {
   const cells: JSX.Element[] = [];
 
   for (let i = 0; i < fieldSize; i++) {
@@ -12,6 +17,7 @@ const mapCells = function (grid: string[][], fieldSize: number): JSX.Element[] {
         <Cell
           key={`[${i},${j}]`}
           content={grid[i][j]}
+          gameStatus={gameStatus}
         />
       );
     }
@@ -21,7 +27,7 @@ const mapCells = function (grid: string[][], fieldSize: number): JSX.Element[] {
 };
 
 const Grid: FC = (): JSX.Element => {
-  const [{ fieldSize, grid, isWall }] = useContext(GameContext);
+  const [{ fieldSize, grid, isWall, gameStatus }] = useContext(GameContext);
 
   return (
     <GridWrapper>
@@ -29,7 +35,7 @@ const Grid: FC = (): JSX.Element => {
         fieldSize={fieldSize}
         isWall={isWall}
       >
-        {mapCells(grid, fieldSize)}
+        {mapCells(grid, fieldSize, gameStatus)}
       </GridContainer>
     </GridWrapper>
   );

@@ -7,6 +7,7 @@ import {
   MOVE_DELAY,
 } from '../models/constants';
 import { ActionType } from '../models/types';
+import { useHandleDirection } from './useHandleDirection';
 import { useIntervalAction } from './useIntervalAction';
 
 export const GameController = function (): null {
@@ -19,8 +20,10 @@ export const GameController = function (): null {
   const autoSpeedDelay =
     !isAutoSpeed || reachMaxSpeed ? null : AUTO_SPEED_DELAY;
 
-  // console.log('render controller 🎮');
+  // add event listener on keydown
+  useHandleDirection();
 
+  // add interval for game re-render
   useIntervalAction(ActionType.MOVE, moveDelay);
   useIntervalAction(ActionType.AUTO_ADD_SPEED, autoSpeedDelay);
   useIntervalAction(ActionType.SPAWN_FOOD, moveDelay * MOVES_PER_SPAWN);
