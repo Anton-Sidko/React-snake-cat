@@ -5,6 +5,7 @@ import {
   MAX_SPEED_VALUE,
   MOVES_PER_SPAWN,
   MOVE_DELAY,
+  MOVE_DELAY_STEP,
 } from '../models/constants';
 import { ActionType } from '../models/types';
 import { useHandleDirection } from './useHandleDirection';
@@ -13,7 +14,7 @@ import { useIntervalAction } from './useIntervalAction';
 export const GameController = function (): null {
   const [state] = useContext(GameContext);
   const { gameSpeed, isAutoSpeed } = state;
-  const moveDelay = MOVE_DELAY / gameSpeed;
+  const moveDelay = MOVE_DELAY - gameSpeed * MOVE_DELAY_STEP;
 
   // Stop auto add speed
   const reachMaxSpeed = gameSpeed === MAX_SPEED_VALUE;
