@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { GameHeader, GameTitle, GameSubTitle } from './Header.styles';
+import { GameHeader, GameTitle, GameSubTitle } from './header.styles';
 
 const Header: FC = (): JSX.Element => {
   return (
