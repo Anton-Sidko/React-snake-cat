@@ -10,7 +10,7 @@ export const INITIAL_STATE: GameState = {
   gameStatus: GameStatus.IDLE,
   isWall: false,
   isAutoSpeed: true,
-  gameSpeed: 3,
+  gameSpeed: 5,
   fieldSize: INITIAL_FIELD_SIZE,
   gamePoints: 0,
   snakeHead: INITIAL_SNAKE_HEAD,

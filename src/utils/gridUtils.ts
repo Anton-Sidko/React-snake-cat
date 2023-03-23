@@ -70,3 +70,13 @@ export const getNextCell = function (
 
   return [newRow, newCol];
 };
+
+export const findTail = function (head: SnakeSegment): SnakeSegment {
+  let tail = head;
+
+  while (tail.next) {
+    tail = tail.next;
+  }
+
+  return tail;
+};

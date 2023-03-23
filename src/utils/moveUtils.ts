@@ -6,7 +6,7 @@ import {
   GameStatus,
   SnakeSegment,
 } from '../models/types';
-import { buildGrid, getNextCell } from './gridUtils';
+import { buildGrid, findTail, getNextCell } from './gridUtils';
 
 const moveSnake = function (state: GameState): SnakeSegment | null {
   const { fieldSize, snakeHead, grid, direction, isWall } = state;
@@ -57,6 +57,13 @@ const checkFoodEated = function (
   if (newGamePoints === 0) {
     return [0, newFood];
   }
+
+  // Make snake longer
+  let newTail = findTail(snakeHead);
+  const oldTail = findTail(oldSnakeHead);
+
+  newTail.next = { row: oldTail.row, col: oldTail.col };
+  newTail = newTail.next;
 
   return [newGamePoints, newFood];
 };
