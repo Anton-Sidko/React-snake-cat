@@ -2,7 +2,7 @@
 
 ### This game create using React and TypeScript
 
-Link to [preview](https://some.netlify.link) on Netlify
+Link to [preview](https://snake-cat.netlify.app/) on Netlify
 
 ### Game features:
 
