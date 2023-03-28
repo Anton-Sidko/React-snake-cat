@@ -6,7 +6,7 @@ export const InputWrap = styled.div`
   gap: 0.5rem;
 
   label {
-    font-size: 2rem;
+    font-size: min(5vw, 2rem);
     line-height: 1;
     vertical-align: middle;
   }

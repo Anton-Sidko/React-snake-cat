@@ -14,9 +14,13 @@ export const GameSettingsBar = styled.div`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: min(4vw, 2rem);
 
   & > ${SettingsWrap} {
-    gap: 2rem 3rem;
+    gap: min(4vw, 2rem) min(5vw, 3rem);
+  }
+
+  h2 {
+    font-size: min(5vw, 2rem);
   }
 `;

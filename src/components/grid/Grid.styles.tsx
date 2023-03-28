@@ -8,12 +8,12 @@ type GridContainerProps = {
 export const GridWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 4rem;
+  margin-top: 3vh;
 `;
 
 export const GridContainer = styled.div<GridContainerProps>`
   display: grid;
-  border: 15px solid transparent;
+  border: min(3vw, 15px) solid transparent;
 
   ${({ fieldSize }) =>
     fieldSize &&
@@ -25,6 +25,6 @@ export const GridContainer = styled.div<GridContainerProps>`
   ${({ isWall }) =>
     isWall &&
     `
-      border: 15px solid var(--border-color);
+      border: min(3vw, 15px) solid var(--border-color);
     `}
 `;

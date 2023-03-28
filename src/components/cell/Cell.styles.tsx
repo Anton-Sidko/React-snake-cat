@@ -12,12 +12,11 @@ const snakeCellStyle = css`
 `;
 
 export const CellItem = styled.div<CellItemProps>`
-  width: 40px;
-  height: 40px;
+  aspect-ratio: 1 / 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.5rem;
+  font-size: min(3.8vw, 3rem);
   background-color: var(--bgc-light);
   border: 1px solid var(--bgc);
 

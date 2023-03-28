@@ -9,6 +9,7 @@ import {
 
 import { Action, GameStatus } from '../../models/types';
 import Button from '../button/Button.component';
+import FinishModal from '../finishModal/FinishModal.component';
 
 import { StatusWrap } from './StatusBar.styles';
 
@@ -44,7 +45,6 @@ const StatusBar: FC = (): JSX.Element => {
     <StatusWrap>
       <h3>Current point: {gamePoints}</h3>
       <h3>Current speed: {gameSpeed}</h3>
-      <h3>Current speed: {gameStatus}</h3>
       <Button
         buttonText={gameAction}
         buttonHandler={() => gameActionHandler(dispatch)}
@@ -53,6 +53,8 @@ const StatusBar: FC = (): JSX.Element => {
         buttonText="Restart game"
         buttonHandler={() => restartGame(dispatch)}
       />
+
+      {gameStatus === GameStatus.FINISHED && <FinishModal />}
     </StatusWrap>
   );
 };
