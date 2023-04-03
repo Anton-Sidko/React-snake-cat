@@ -1,6 +1,6 @@
 # Snake cat
 
-### This game create using React and TypeScript
+### This game created using React and TypeScript
 
 Link to [preview](https://snake-cat.netlify.app/) on Netlify.
 
